@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" >
+        <!--
+        使用@表示使用固定的style，而不会跟随Theme改变，这style可以在对应的style.xml中找到
+        使用 ? 表示从Theme中查找引用的资源名，这个google叫预定义样式，用在多主题时的场景，属性值会随着主题而改变。（？需要和attr配合使用）
+        @style/
+        ?sttr/
+        -->
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_back"/>
+
+        <!--
+        marginLeft离左边的距离
+        layout_alignParentLeft 控件与父控件左边缘左对齐
+        centerVertical垂直方向居中
+         -->
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+
+
+
+
+</LinearLayout>

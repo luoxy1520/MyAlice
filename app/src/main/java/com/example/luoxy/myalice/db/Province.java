@@ -1,6 +1,6 @@
 package com.example.luoxy.myalice.db;
 
-// 省
+// 省 PS:类的颜色和版本控制有关
 
 import org.litepal.crud.DataSupport;
 
@@ -10,7 +10,7 @@ public class Province extends DataSupport {
 
     private String proviceName;
 
-    private String provinceCode;
+    private int provinceCode;
 
     public void setId(int id) {
         this.id = id;
@@ -20,7 +20,7 @@ public class Province extends DataSupport {
         this.proviceName = proviceName;
     }
 
-    public void setProvinceCode(String provinceCode) {
+    public void setProvinceCode(int provinceCode) {
         this.provinceCode = provinceCode;
     }
 
@@ -32,7 +32,7 @@ public class Province extends DataSupport {
         return proviceName;
     }
 
-    public String getProvinceCode() {
+    public int getProvinceCode() {
         return provinceCode;
     }
 
