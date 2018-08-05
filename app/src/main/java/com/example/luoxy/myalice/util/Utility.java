@@ -2,12 +2,14 @@ package com.example.luoxy.myalice.util;
 
 // 解析处理服务器返回的JSON数据
 
-import android.service.carrier.CarrierIdentifier;
+
 import android.text.TextUtils;
 
 import com.example.luoxy.myalice.db.City;
 import com.example.luoxy.myalice.db.County;
 import com.example.luoxy.myalice.db.Province;
+import com.example.luoxy.myalice.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,6 +83,19 @@ public class Utility {
             }
         }
         return false;
+    }
+
+    public static Weather handleWeatherResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
     }
     
 }

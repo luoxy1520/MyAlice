@@ -1,6 +1,7 @@
 package com.example.luoxy.myalice;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -91,7 +92,15 @@ public class ChooseAreaFragment extends Fragment {
                     queryCounties();
                 }else if(currentLevel == LEVEL_COUNTY) {
                     selectedCounty = countyList.get(position);
-                    Toast.makeText(getContext(), selectedCounty.getcountyName(), Toast.LENGTH_SHORT).show();
+
+                    String weatherId = selectedCounty.getWeatherId();
+
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id", weatherId);
+
+                    startActivity(intent); // 开新活动
+                    getActivity().finish(); // 关久活动
+
                 }
             }
         });
