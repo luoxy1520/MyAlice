@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.luoxy.myalice.db.City;
 import com.example.luoxy.myalice.db.County;
 import com.example.luoxy.myalice.db.Province;
+import com.example.luoxy.myalice.gson.Weather;
 import com.example.luoxy.myalice.util.HttpUtil;
 import com.example.luoxy.myalice.util.Utility;
 
@@ -70,7 +71,8 @@ public class ChooseAreaFragment extends Fragment {
         backButton = (Button) view.findViewById(R.id.back_button);
         listView = (ListView) view.findViewById(R.id.list_view);
 
-        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, dataList);
+        adapter = new ArrayAdapter<String>(getContext(), R.layout.array_adapter, dataList);
+
         listView.setAdapter(adapter);
 
         return view;
@@ -95,11 +97,20 @@ public class ChooseAreaFragment extends Fragment {
 
                     String weatherId = selectedCounty.getWeatherId();
 
-                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
-                    intent.putExtra("weather_id", weatherId);
+                    if (getActivity() instanceof MainActivity) {
 
-                    startActivity(intent); // 开新活动
-                    getActivity().finish(); // 关久活动
+                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                        intent.putExtra("weather_id", weatherId);
+
+                        startActivity(intent); // 开新活动
+                        getActivity().finish(); // 关旧活动
+
+                    } else if (getActivity() instanceof WeatherActivity) {
+
+                        ((WeatherActivity)getActivity()).drawerLayout.closeDrawers();
+                        ((WeatherActivity)getActivity()).swipeRefreshLayout.setRefreshing(true);
+                        ((WeatherActivity) getActivity()).requestWeather(weatherId);
+                    }
 
                 }
             }
@@ -216,7 +227,6 @@ public class ChooseAreaFragment extends Fragment {
                         @Override
                         public void run() {
                             closeProgressDialog();
-                            Toast.makeText(getContext(), "访问服务器成功", Toast.LENGTH_SHORT).show();
                             if ("province".equals(type)) {
                                 queryProvinces();
                             } else if ("city".equals(type)) {

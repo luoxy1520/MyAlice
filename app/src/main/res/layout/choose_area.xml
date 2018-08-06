@@ -4,13 +4,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@drawable/my_pic_2"
     android:fitsSystemWindows="true">
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary" >
+        android:background="#8000"
+        >
         <!--
         使用@表示使用固定的style，而不会跟随Theme改变，这style可以在对应的style.xml中找到
         使用 ? 表示从Theme中查找引用的资源名，这个google叫预定义样式，用在多主题时的场景，属性值会随着主题而改变。（？需要和attr配合使用）
@@ -24,7 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="#fff"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            />
 
         <Button
             android:id="@+id/back_button"
